@@ -1,0 +1,9 @@
+RTO (recovery time objective) and RPO (recovery point objective) are important key metrics when devolping a DR plan. 
+RTO represents the time (hours) it takes to return to a working state after a given disaster. 
+RPO represents how much data you could lose when a disaster happens, also expressed in hours.
+
+The RDS Multi-AZ configuration is the recommended approach for production environments 
+due to its ability to support low RTO (recovery time objective) and RPO (recovery point objective) requirements. 
+
+In a single AZ instance RTO can vary from minutes to hours and RPO is typically 5 minutes.
+On the other hand, in a multi AZ instance, RPO is is zero and RTO is under 30 minutes.
