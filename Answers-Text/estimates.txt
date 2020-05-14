@@ -1,9 +1,35 @@
 RTO (recovery time objective) and RPO (recovery point objective) are important key metrics when devolping a DR plan. 
 RTO represents the time (hours) it takes to return to a working state after a given disaster. 
 RPO represents how much data you could lose when a disaster happens, also expressed in hours.
-
 The RDS Multi-AZ configuration is the recommended approach for production environments 
 due to its ability to support low RTO (recovery time objective) and RPO (recovery point objective) requirements. 
-
 In a single AZ instance RTO can vary from minutes to hours and RPO is typically 5 minutes.
 On the other hand, in a multi AZ instance, RPO is is zero and RTO is under 30 minutes.
+
+Minimum RTO for a single AZ outage:
+
+A single AZ outage represents our application/database is running only in Canada (central) region and
+ca-central-1 AZ. In this case, the worst possible, if the AZ or even the region fails, the appication will 
+be without service and our business will be out of production.
+
+A single AZ, but two regions is a second stage of recoverability where the application has a redundance in a
+different region. In our case, Canada and Ohio (US-east) are set as the regions of our database.
+
+Minimum RTO for a single region outage
+
+In this configuration, a single region and single AZ is the same case as stated above. Nevertheless,
+with multiples AZ, if the region is with high availability and only an AZ is down, we can maintain the 
+application without issues.
+
+In the application of this project, it would be the use of only ca-central-1 or us-east-1 as Region 1
+or Region 2. If one region is down and we do not have the other set, the application will be offline.
+
+Minimum RPO for a single AZ outage
+
+Considering the RPO in a single AZ outage, the risk is huge. Working with only ca-central-1 or us-east-1,
+without another region the data stored can be lost.
+
+Minimum RPO for a single region outage
+
+In this case, it is a better situation. In our project, the region US East (Ohio) has some AZ that improve
+the recoverability of the application.
