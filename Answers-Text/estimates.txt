@@ -33,3 +33,8 @@ Minimum RPO for a single region outage
 
 In this case, it is a better situation. In our project, the region US East (Ohio) has some AZ that improve
 the recoverability of the application.
+
+Finally, considering the application used in this project (static website) we can infer that:
+
+RPO will be approximately 24 hours since the static website does not retain a lot of data.
+RTO will be approximately 1 hour, since an offline website can bring some discomfort for users.
